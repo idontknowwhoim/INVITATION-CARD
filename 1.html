@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invitation</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Arial;
+
+    /* GRADIENT */
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #334155,
+        #0f172a
+    );
+
+    position:relative;
+}
+/* BLUR EFFECTS */
+
+body::before,
+body::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(100px);
+    z-index:-1;
+}
+
+body::before{
+    background:#ff00cc;
+    top:-80px;
+    left:-80px;
+}
+
+body::after{
+    background:#00d4ff;
+    bottom:-80px;
+    right:-80px;
+}
+
+/* INPUT BOX */
+
+.login-box{
+    width:320px;
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.login-box h2{
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    background:goldenrod;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* INVITE */
+
+.invite{
+    display:none;
+    text-align:center;
+}
+
+.invite img{
+    width:350px;
+    border-radius:20px;
+}
+
+.name{
+    margin-top:20px;
+    text-align:center;
+    color:#fff;
+    font-size:24px;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INPUT -->
+
+<div class="login-box" id="loginBox">
+
+    <h2>Enter Your Name</h2>
+
+    <input type="text" id="username" placeholder="Your Name">
+
+    <button onclick="openInvite()">
+        Open Invitation
+    </button>
+
+</div>
+
+<!-- INVITATION -->
+
+<div class="invite" id="inviteBox">
+
+    <!-- YOUR IMAGE -->
+    <img src="WhatsApp Image 2026-05-18 at 10.47.00 AM.jpeg">
+
+    <div class="name" id="showName"></div>
+
+</div>
+
+<script>
+
+function openInvite(){
+
+    let name = document.getElementById("username").value.trim();
+
+    if(name === ""){
+        alert("Enter your name");
+        return;
+    }
+
+    document.getElementById("loginBox").style.display = "none";
+
+    document.getElementById("inviteBox").style.display = "block";
+
+    document.getElementById("showName").innerHTML =
+        "Welcome " + name;
+
+}
+const params = new URLSearchParams(window.location.search);
+
+const name = params.get("name");
+
+if(name){
+    document.getElementById("showName").innerHTML =
+    "Welcome " + name;
+
+    document.getElementById("loginBox").style.display = "none";
+
+    document.getElementById("inviteBox").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
